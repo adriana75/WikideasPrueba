@@ -4,7 +4,10 @@ const topicDomain = require('../domain/topic.domain')
 exports.getAll = async function (req, res) {
     try {
         //validaciones
-        const topicsList = await topicDomain.getAll();
+        let topicsList = await topicDomain.getAll();
+        if(topicsList==null){
+            topicsList = "No hay temas"
+        }
         res.status(200).json(topicsList);
     } catch (error) {
         res.status(404).json({ message: error.message });
@@ -14,7 +17,10 @@ exports.getAll = async function (req, res) {
 exports.get = async function (req, res) {
     try {
         //validaciones
-        const topic = await topicDomain.get(req.params);
+        let topic = await topicDomain.get(req.params);
+        if(topic==null){
+            topic = "No existe"
+        }
         res.status(200).json(topic);
     } catch (error) {
         res.status(404).json({ message: error.message });
@@ -34,7 +40,6 @@ exports.save = async function (req, res) {
 exports.update = async function (req, res) {
     try {
         //validaciones
-        console.log(req.body);
         const topic = topicDomain.update(req.body);
         res.status(200).json(topic);
     } catch (error) {
@@ -43,5 +48,11 @@ exports.update = async function (req, res) {
 };
 
 exports.delete = async function (req, res) {
-    res.status(404).json({ message: error.message });
+    try {
+        //validaciones
+        const topic = topicDomain.delete(req.params.id);
+        res.status(200).json(topic);
+    } catch (error) {
+        res.status(404).json({ message: error.message });
+    }
 };

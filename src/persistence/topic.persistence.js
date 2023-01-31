@@ -4,48 +4,38 @@ const dotenv = require('dotenv')
 
 const getAll = async()=>{
     const conexion = getDB.getDB()
-    return await conexion.collection("topic")
-    .find().toArray()
+    return await conexion.collection("topic").find().toArray()
 }
 
 const get = async(object)=>{
     const conexion = getDB.getDB()
     const filtro = {_id: Number(object.id)}
-    const topicBd = await conexion.collection("topic").findOne(filtro)
-    return topicBd
-  
+    return await conexion.collection("topic").findOne(filtro)  
 }
 
 const update = async(object, callback)=>{
     const conexion = getDB.getDB()
-
     const filtro = { _id: Number(object.id) }
     delete object.id;
     const operacion = {
         $set:object
     }
-    console.log("persistence", object);
-    const topic = await conexion.collection("topic")
-    .findOneAndUpdate(filtro, operacion,{ upsert:true}, callback)
-    return topic
-    //, { upsert:true, returnOriginal:true }, callback
-   //const topic = object
-   //delete object._id;
-   //console.log("id", topic._id);
-   //return await conexion.collection("topic").findOneAndUpdate({_id: topic._id}, topic, { upsert:true, returnOriginal:true },
-    //callback)
-   
+    return await conexion.collection("topic").findOneAndUpdate(filtro, operacion,{ upsert:true}, callback)
 }
 
 const save = async(object, callback)=>{
     const conexion = getDB.getDB()
     object._id = Number(object.id)
     delete object.id
-    await conexion.collection("topic")
-        .insertOne(object, callback)
+    await conexion.collection("topic").insertOne(object, callback)
 }
 
+const delet = async(id, callback)=>{
+    const conexion = getDB.getDB()
+    const filtro = { _id: Number(id) }
+    await conexion.collection("topic").deleteOne(filtro, callback)
+}
 
-module.exports = { getAll, get, update, save };
+module.exports = { getAll, get, update, save, delet };
 
 
