@@ -1,4 +1,4 @@
-'use strict';
+//'use strict';
 const topicDomain = require('../domain/topic.domain')
 
 exports.getAll = async function (req, res) {

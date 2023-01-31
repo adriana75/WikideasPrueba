@@ -16,7 +16,7 @@ app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
 
 //Define the first Route of APP
-app.get('/', (req, res) =>{
+app.get('/hello', (req, res) =>{
     //Send 200 json
     res.status(200).json(
         {

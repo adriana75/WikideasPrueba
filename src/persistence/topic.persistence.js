@@ -10,16 +10,15 @@ const getAll = async()=>{
 
 const get = async(object)=>{
     const conexion = getDB.getDB()
-    console.log("obj persistencia", object);
-    const filtro = {_id: object.id}
-    console.log("filtro persistence", filtro);
-    return await conexion.collection("topic").findOne(filtro)
+    const filtro = {_id: Number(object.id)}
+    const topicBd = await conexion.collection("topic").findOne(filtro)
+    return topicBd
   
 }
 
 const update = async(object, callback)=>{
     const conexion = getDB.getDB()
-    /*
+
     const filtro = { _id: Number(object.id) }
     delete object.id;
     const operacion = {
@@ -27,14 +26,14 @@ const update = async(object, callback)=>{
     }
     console.log("persistence", object);
     const topic = await conexion.collection("topic")
-    .findOneAndUpdate(filtro, operacion, { upsert:true, returnOriginal:true }, callback)
+    .findOneAndUpdate(filtro, operacion,{ upsert:true}, callback)
     return topic
-    */ 
-   const topic = object
+    //, { upsert:true, returnOriginal:true }, callback
+   //const topic = object
    //delete object._id;
-   console.log("id", topic._id);
-   return await conexion.collection("topic").findOneAndUpdate({_id: topic._id}, topic, { upsert:true, returnOriginal:true },
-    callback)
+   //console.log("id", topic._id);
+   //return await conexion.collection("topic").findOneAndUpdate({_id: topic._id}, topic, { upsert:true, returnOriginal:true },
+    //callback)
    
 }
 

@@ -11,10 +11,8 @@ exports.getAll = async function () {
 };
 
 exports.get = async function (topicObj) {
-    console.log("objeto domain", topicObj);
     try {
         const topic = await topicPersistence.get(topicObj)
-        console.log("topic domain", topic);
         return topic;
     } catch (error) {
         return null;
@@ -24,9 +22,8 @@ exports.get = async function (topicObj) {
 exports.update = async function (topicObj) {
     console.log("domain topic Obj", topicObj);
     try {
-        const topic = topicPersistence.update(topicObj)
+        const topic = await topicPersistence.update(topicObj)
         console.log("domain", topic);
-
         return topic;
     } catch (error) {
         return null;
