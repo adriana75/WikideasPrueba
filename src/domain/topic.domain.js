@@ -11,8 +11,10 @@ exports.getAll = async function () {
 };
 
 exports.get = async function (topicObj) {
+    console.log("objeto domain", topicObj);
     try {
         const topic = await topicPersistence.get(topicObj)
+        console.log("topic domain", topic);
         return topic;
     } catch (error) {
         return null;

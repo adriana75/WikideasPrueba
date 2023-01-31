@@ -10,7 +10,9 @@ const getAll = async()=>{
 
 const get = async(object)=>{
     const conexion = getDB.getDB()
+    console.log("obj persistencia", object);
     const filtro = {_id: object.id}
+    console.log("filtro persistence", filtro);
     return await conexion.collection("topic").findOne(filtro)
   
 }

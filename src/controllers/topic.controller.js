@@ -14,7 +14,7 @@ exports.getAll = async function (req, res) {
 exports.get = async function (req, res) {
     try {
         //validaciones
-        const topic = await topicDomain.get(req.body);
+        const topic = await topicDomain.get(req.params);
         res.status(200).json(topic);
     } catch (error) {
         res.status(404).json({ message: error.message });
