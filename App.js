@@ -25,15 +25,6 @@ app.get('/', (req, res) =>{
     )
 })
 
-app.get('/:id', (req, res) =>{
-    let id = req.params.id;
-    res.status(200).json(
-        {
-            "message": `Hola ${id}`
-        }
-    )
-})
-
 app.use('/topics', topicRoutes)
 
 

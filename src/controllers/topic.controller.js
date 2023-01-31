@@ -14,7 +14,7 @@ exports.getAll = async function (req, res) {
 exports.get = async function (req, res) {
     try {
         //validaciones
-        const topic = await topicDomain.get();
+        const topic = await topicDomain.get(req.body);
         res.status(200).json(topic);
     } catch (error) {
         res.status(404).json({ message: error.message });
@@ -24,7 +24,6 @@ exports.get = async function (req, res) {
 exports.save = async function (req, res) {
     try {
         //validaciones
-        console.log(req.body);
         const topic = topicDomain.save(req.body);
         res.status(200).json(topic);
     } catch (error) {
@@ -36,7 +35,7 @@ exports.update = async function (req, res) {
     try {
         //validaciones
         console.log(req.body);
-        const topic = topicDomain.save(req.body);
+        const topic = topicDomain.update(req.body);
         res.status(200).json(topic);
     } catch (error) {
         res.status(404).json({ message: error.message });
