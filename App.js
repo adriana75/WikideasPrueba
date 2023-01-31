@@ -25,11 +25,11 @@ app.get('/', (req, res) =>{
     )
 })
 
-app.get('/hello/:nombre', (req, res) =>{
-    let nombre = req.params.nombre;
+app.get('/:id', (req, res) =>{
+    let id = req.params.id;
     res.status(200).json(
         {
-            "message": `Hola, ${nombre}`
+            "message": `Hola ${id}`
         }
     )
 })

@@ -4,16 +4,25 @@ const topicPersistence = require('../persistence/topic.persistence')
 exports.getAll = async function () {
     try {
         const topics = await topicPersistence.getAll()
-        console.log(topics);
         return topics;
     } catch (error) {
         return null;
     }
 };
 
-exports.update = async function () {
+exports.get = async function () {
     try {
-        const topic = topicPersistence.update()
+        const topic = await topicPersistence.get()
+        console.log(topic);
+        return topic;
+    } catch (error) {
+        return null;
+    }
+};
+
+exports.update = async function (topicObj) {
+    try {
+        const topic = topicPersistence.update(topicObj)
 
         return topic;
     } catch (error) {

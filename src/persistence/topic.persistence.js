@@ -4,8 +4,14 @@ const dotenv = require('dotenv')
 
 const getAll = async()=>{
     const conexion = getDB.getDB()
-    await conexion.collection("topic")
-    .find({})
+    return await conexion.collection("topic")
+    .find().toArray()
+}
+
+const get = async()=>{
+    const conexion = getDB.getDB()
+    return await conexion.collection("topic")
+    .findOne().toArray()
 }
 
 const update = async(object, callback)=>{
@@ -31,6 +37,6 @@ const save = async(object, callback)=>{
 }
 
 
-module.exports = { getAll, update, save };
+module.exports = { getAll, get, update, save };
 
 
